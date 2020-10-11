@@ -14,7 +14,7 @@ def respond():
         return make_response(jsonify({
             "message": "This is an endpoint for scraping a public facebook post. It will respond with post's owners name,profile link,profile picture,post time and post text",
             "method": "GET",
-            "requestExample": "?url=https://www.facebook.com/aaqib.hossain/posts/10164207311055109",
+            "requestExample": "https://scrapelink.herokuapp.com/?url=https://www.facebook.com/aaqib.hossain/posts/10164207311055109",
             "resposne": response_object
         }))
     return make_response(jsonify(get_data(request.args.get('url'))))
