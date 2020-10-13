@@ -48,11 +48,9 @@ def get_data(URL):
         return ({"message": "Error Occured whle scaping post text."})
     try:
         time_of_post = browser.find_element_by_css_selector(
-            'abbr').get_attribute('title').strip()
-        time_of_post = datetime.strptime(
-            time_of_post, "%A, %B %d, %Y at %H:%M")
+            'abbr').get_attribute('data-utime').strip()
+        time_of_post = datetime.fromtimestamp(int(time_of_post)).isoformat()
         print(time_of_post)
-        time_of_post = time_of_post.isoformat()
     except Exception as e:
         print(e)
         return ({"message": "Error Occured while scraping time."})
