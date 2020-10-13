@@ -22,7 +22,7 @@ def get_data(URL):
         # print(picture_link)
     except Exception as e:
         print(e)
-        return ({"message": "Error Occured while scraping picture link."})
+        return ({"message": "Error Occured while scraping picture link.Please try again"})
     try:
         name = browser.find_element_by_css_selector(
             '.fwb.fcg').text.strip()
@@ -49,7 +49,8 @@ def get_data(URL):
     try:
         time_of_post = browser.find_element_by_css_selector(
             'abbr').get_attribute('title').strip()
-        time_of_post = datetime.strptime(time_of_post, "%A, %d %B %Y at %H:%M")
+        time_of_post = datetime.strptime(
+            time_of_post, "%A, %d %B, %Y at %H:%M")
         print(time_of_post)
         time_of_post = time_of_post.isoformat()
     except Exception as e:
