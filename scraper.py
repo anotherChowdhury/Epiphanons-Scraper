@@ -50,7 +50,7 @@ def get_data(URL):
         time_of_post = browser.find_element_by_css_selector(
             'abbr').get_attribute('title').strip()
         time_of_post = datetime.strptime(
-            time_of_post, "%A, %d %B, %Y at %H:%M")
+            time_of_post, "%A, %B %d, %Y at %H:%M")
         print(time_of_post)
         time_of_post = time_of_post.isoformat()
     except Exception as e:
