@@ -58,7 +58,7 @@ def get_data(URL):
 
     return ({
         "name": name,
-        "date": time_of_post,
+        "time": time_of_post,
         "postLink": URL,
         "profileLink": profile_link,
         "text": post_text,
