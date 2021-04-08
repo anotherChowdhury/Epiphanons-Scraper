@@ -18,14 +18,6 @@ def get_data(URL):
     )
     browser.get(URL)
     try:
-        picture_link = browser.find_element_by_css_selector(
-            ".scaledImageFitWidth"
-        ).get_attribute("src")
-        # print(picture_link)
-    except Exception as e:
-        print(e)
-        return {"message": "Error Occured while scraping picture link.Please try again"}
-    try:
         name = browser.find_element_by_css_selector(".fwb.fcg").text.strip()
         profile_link = (
             browser.find_element_by_css_selector(".fwb.fcg a")
@@ -64,6 +56,16 @@ def get_data(URL):
     except Exception as e:
         print(e)
         return {"message": "Error Occured while scraping time."}
+
+    try:
+        picture_link = browser.find_element_by_css_selector(
+            ".scaledImageFitWidth"
+        ).get_attribute("src")
+        # print(picture_link)
+    except Exception as e:
+        print(e)
+        return {"message": "Error Occured while scraping picture link.Please try again"}
+
     browser.quit()
 
     return {
