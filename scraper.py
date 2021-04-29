@@ -16,6 +16,8 @@ def get_data(URL):
         executable_path=os.environ.get("CHROMEDRIVER_PATH"),
         chrome_options=chrome_options,
     )
+
+    browser.get(URL)
     print(browser.find_element_by_tag_name("body").text)
     try:
         picture_link = browser.find_element_by_css_selector(
