@@ -14,16 +14,14 @@ def get_data(URL):
     chrome_options.add_argument("--no-sandbox")
     browser = webdriver.Chrome(
         executable_path=os.environ.get("CHROMEDRIVER_PATH"),
-        chrome_options=chrome_options,
+        options=chrome_options,
     )
-
     browser.get(URL)
-    print(browser.find_element_by_tag_name("body").text)
     try:
         picture_link = browser.find_element_by_css_selector(
             ".scaledImageFitWidth.img"
         ).get_attribute("src")
-        print(picture_link)
+        # print(picture_link)
     except Exception as e:
         print(e)
         return {"message": "Error Occured while scraping picture link.Please try again"}
@@ -35,10 +33,9 @@ def get_data(URL):
             .split("?")[0]
             .strip()
         )
-        print(name)
-        print(profile_link)
+        # print(name)
+        # print(profile_link)
     except Exception as e:
-        print(e)
         try:
             if "&id=" in URL:
                 profile_link = (
@@ -46,17 +43,16 @@ def get_data(URL):
                 )
             else:
                 profile_link = URL.split("post")[0].strip()
-        except Exception as e:
-            print(e)
+        except:
             return {"message": "Error Occured while scraping profile link"}
     try:
         post_text = browser.find_element_by_css_selector(
             'div[data-testid="post_message"]'
         ).text.strip()
-        print(post_text)
+        # print(post_text)
     except Exception as e:
         print(e)
-        return {"message": "Error Occured whle sceaping post text."}
+        return {"message": "Error Occured whle scaping post text."}
     try:
         time_of_post = (
             browser.find_element_by_css_selector("abbr")
@@ -78,7 +74,3 @@ def get_data(URL):
         "text": post_text,
         "image": picture_link,
     }
-
-
-# if __name__ == "__main__":
-#     print(get_data("https://www.facebook.com/naveed.aurko/posts/3966262333430819"))
