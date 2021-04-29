@@ -17,6 +17,7 @@ def get_data(URL):
         options=chrome_options,
     )
     browser.get(URL)
+    print(browser.find_element_by_tag_name("body").text)
     try:
         picture_link = browser.find_element_by_css_selector(
             ".scaledImageFitWidth.img"
